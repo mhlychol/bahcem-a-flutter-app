@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "871506694746",
+    "project_id": "bahcem",
+    "storage_bucket": "bahcem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871506694746:android:b6e2686522f62864923e63",
+        "android_client_info": {
+          "package_name": "com.example.bahcem"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFeZ6mOPZsuZvot5JDPjwpZmu0IZMmPVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871506694746:android:45a8590b0a4c2738923e63",
+        "android_client_info": {
+          "package_name": "com.example.deneme"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFeZ6mOPZsuZvot5JDPjwpZmu0IZMmPVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
