@@ -6,71 +6,70 @@ class UygMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Column(
-          children: [
-            GridView.count(
-              padding: EdgeInsets.all(8),
-              crossAxisCount: 2,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const SebzelistSayfa()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(45),
-                    ),
-                  ),
-                  child: const Text('Sebzeler'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    // Butona tıklama işlemi burada yapabilirsiniz.
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(45),
-                    ),
-                  ),
-                  child: const Text('Toprak Bakımı'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    // Butona tıklama işlemi burada yapabilirsiniz.
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(45),
-                    ),
-                  ),
-                  child: const Text('Doğal Bitki Koruma'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    // Butona tıklama işlemi burada yapabilirsiniz.
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(45),
-                    ),
-                  ),
-                  child: const Text('Kış Bahçesi'),
-                ),
-              ],
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SebzelistSayfa()),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+              ),
+              padding: EdgeInsets.all(25),
             ),
-            SizedBox(height: 3),
-          ],
-        );
-      },
+            child: const Text('Sebzeler'),
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () {
+              // Butona tıklama işlemi burada yapabilirsiniz.
+            },
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+              ),
+              padding: EdgeInsets.all(25),
+            ),
+            child: const Text('Toprak Bakımı'),
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () {
+              // Butona tıklama işlemi burada yapabilirsiniz.
+            },
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+              ),
+              padding: EdgeInsets.all(25),
+            ),
+            child: const Text('Doğal Bitki Koruma'),
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () {
+              // Butona tıklama işlemi burada yapabilirsiniz.
+            },
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              padding: EdgeInsets.all(25),
+            ),
+            child: const Text('Kış Bahçesi'),
+          ),
+          SizedBox(height: 10),
+        ],
+      ),
     );
   }
 }

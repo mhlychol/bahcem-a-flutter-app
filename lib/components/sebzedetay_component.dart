@@ -1,9 +1,41 @@
+import 'dart:developer';
+import 'package:intl/intl.dart';
+
 import 'package:bahcem/models/sebzeler.dart';
+import 'package:bahcem/models/uruntakip_model.dart';
 import 'package:flutter/material.dart';
 
 class Sebzedetaycomp extends StatelessWidget {
   final Sebze sebze;
   const Sebzedetaycomp({super.key, required this.sebze});
+
+  void takipbuton(BuildContext context) async {
+  DateTime? secilenTarih = await showDatePicker(
+    context: context,
+    initialDate: DateTime.now(),
+    firstDate: DateTime(DateTime.now().month - 6),
+    lastDate: DateTime.now(),
+    //locale: const Locale('tr', 'TR'), // Türkçe dil ayarı
+    
+  );
+
+  if (secilenTarih != null) {
+    Sebzetakip sebzeTakip = Sebzetakip(
+      adtakip: sebze.ad,
+      dikimAyitakip: sebze.dikimAyi,
+      cimlenmeSuresitakip: sebze.cimlenmeSuresi,
+      buyumeSuresitakip: sebze.buyumeSuresi,
+      sulamaSikligitakip: sebze.sulamaSikligi,
+      mevsimtakip: sebze.mevsim,
+      tarihtakip: secilenTarih,
+    );
+    String formattedDate = DateFormat('dd.MM.yyyy').format(secilenTarih!);
+log(formattedDate);
+    // Burada sebzeyi takip listesine ekleyebilirsiniz.
+    // Örneğin:
+    // takipListesi.add(sebzeTakip);
+  }
+}
 
 
   @override
@@ -70,7 +102,8 @@ class Sebzedetaycomp extends StatelessWidget {
                               child: Container(
                                 padding: const EdgeInsets.all(8.0),
                                 decoration: BoxDecoration(
-                                  color: const Color.fromARGB(255, 238, 238, 238),
+                                  color:
+                                      const Color.fromARGB(255, 238, 238, 238),
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
                                 child: Column(
@@ -141,7 +174,7 @@ class Sebzedetaycomp extends StatelessWidget {
                                 ),
                               ),
                             ),
-                             // Aralarda 2 birimlik boşluk ekleniyor
+                            // Aralarda 2 birimlik boşluk ekleniyor
                           ],
                         ),
                         const SizedBox(height: 5),
@@ -232,7 +265,7 @@ class Sebzedetaycomp extends StatelessWidget {
                           children: [
                             const SizedBox(width: 5),
 
-                             // Aralarda 2 birimlik boşluk ekleniyor
+                            // Aralarda 2 birimlik boşluk ekleniyor
                             Expanded(
                               child: Container(
                                 padding: const EdgeInsets.all(8.0),
@@ -315,6 +348,35 @@ class Sebzedetaycomp extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            height: 80,
+            child: SingleChildScrollView(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Takip listeme ekle',
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                      width:
+                          10), // Buton ile metin arasında boşluk eklemek için
+                  IconButton(
+      onPressed: () => takipbuton(context), // Anonim fonksiyon kullanarak takipbuton'u sarmalama
+      icon: Icon(Icons.favorite),
+      iconSize: 50,
+      color: Colors.red,
+      padding: EdgeInsets.zero,
+      splashRadius: 24,
+    ),
+                ],
+              ),
+            ),
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),

@@ -1,6 +1,8 @@
 import 'package:bahcem/components/sebzedetay_component.dart';
 import 'package:flutter/material.dart';
 import 'package:bahcem/models/sebzeler.dart';
+import 'package:bahcem/components/bottomnavigationbar.dart';
+import 'package:bahcem/services/auth_service.dart';
 
 class SebzedetaySayfa extends StatelessWidget {
   final Sebze selectedSebze;

@@ -2,6 +2,9 @@ import 'package:bahcem/models/sebzeler.dart';
 import 'package:flutter/material.dart';
 import 'package:bahcem/components/Sebze_tile.dart';
 import 'package:bahcem/services/sebzeservice.dart';
+import 'package:bahcem/components/bottomnavigationbar.dart';
+import 'package:bahcem/services/auth_service.dart';
+import 'package:bahcem/screens/uyganasayfa.dart';
 
 class SebzelistSayfa extends StatefulWidget {
   const SebzelistSayfa({super.key});
@@ -13,6 +16,24 @@ class SebzelistSayfa extends StatefulWidget {
 class _SebzelistSayfaState extends State<SebzelistSayfa> {
   final TextEditingController _textController = TextEditingController();
   List<Sebze> displayedSebzeler = [];
+  int _currentIndex = 0;
+  void _onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+
+    // Handle tab selections as needed
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => UygulamaAnasayfa()),
+      );
+    } else if (index == 1) {
+      // Handle "Profil" tab
+    } else if (index == 2) {
+      AuthService().signOut(context);
+    }
+  }
 
   @override
   void initState() {
@@ -48,6 +69,10 @@ class _SebzelistSayfaState extends State<SebzelistSayfa> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: MyBottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: _onTabTapped,
       ),
       body: Column(
         children: [

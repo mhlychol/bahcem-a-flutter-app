@@ -10,7 +10,7 @@ class MyBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       currentIndex: currentIndex,
-      selectedItemColor: Colors.green, 
+      selectedItemColor: Color.fromARGB(255, 230, 13, 13), 
       onTap: onTap,
       items: const [
         BottomNavigationBarItem(
@@ -18,13 +18,14 @@ class MyBottomNavigationBar extends StatelessWidget {
           label: "Anasayfa",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.account_circle),
-          label: "Profil",
+          icon: Icon(Icons.favorite),
+          label: "Favoriler",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.exit_to_app),
           label: "Çıkış",
         ),
+        
       ],
     );
   }

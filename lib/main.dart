@@ -1,3 +1,4 @@
+import 'package:bahcem/components/havadurumu_component.dart';
 import 'package:bahcem/screens/giris.dart';
 import 'package:bahcem/services/jsonfirebaseservice.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,8 @@ import 'utils/locator.dart';
 import 'package:intl/date_symbol_data_local.dart';
 //import 'screens/giris.dart';
 import 'package:bahcem/services/sebzeservice.dart';
+//import 'package:bahcem/services/geolocator_service.dart';
+
 
 
 void main() async {
@@ -31,8 +34,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+            locale: const Locale('tr', 'TR'), // Uygulama dilini Türkçe olarak ayarla
+
       //home: SebzeListesiScreen(),
       home: GirisEkrani(),
+      //home: LocationServices(),
+      //home:WeatherPage(),
+      
     );
   }
 }
