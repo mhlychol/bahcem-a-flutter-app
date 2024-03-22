@@ -1,3 +1,5 @@
+import 'package:bahcem/screens/bitkihastaliklistsayfa.dart';
+import 'package:bahcem/screens/zararlilistsayfadart';
 import 'package:flutter/material.dart';
 import 'package:bahcem/screens/sebzelistsayfa.dart';
 
@@ -31,28 +33,32 @@ class UygMenu extends StatelessWidget {
           SizedBox(height: 10),
           ElevatedButton(
             onPressed: () {
-              // Butona tıklama işlemi burada yapabilirsiniz.
-            },
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ZararlilistSayfa()),
+              );            },
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
               ),
               padding: EdgeInsets.all(25),
             ),
-            child: const Text('Toprak Bakımı'),
+            child: const Text('Bahçe Zararlıları'),
           ),
           SizedBox(height: 10),
           ElevatedButton(
             onPressed: () {
-              // Butona tıklama işlemi burada yapabilirsiniz.
-            },
+ Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HastaliklistSayfa()),
+              );            },
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
               ),
               padding: EdgeInsets.all(25),
             ),
-            child: const Text('Doğal Bitki Koruma'),
+            child: const Text('Bitki Hastalıkları'),
           ),
           SizedBox(height: 10),
           ElevatedButton(

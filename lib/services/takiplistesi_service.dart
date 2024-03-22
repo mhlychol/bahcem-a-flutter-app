@@ -1,6 +1,3 @@
-//dosya yoksa olusturacak
-//secili urunu json dosyasina ekleyecek
-//secili urunu json dosyasindan silecek
 import 'dart:convert';
 import 'dart:io';
 
@@ -14,27 +11,54 @@ class BitkiTakipService {
 
   static Future<File> get _localFile async {
     final path = await _localPath;
-    return File('$path/bitkitakip.json');
+    return File('$path/assets/jsonfiles/bitkitakip.json');
   }
 
   static Future<List<dynamic>> readBitkiTakip() async {
     try {
       final file = await _localFile;
+      if (!await file.exists()) {
+        print('Bitki takip dosyası bulunamadı, yeni dosya oluşturuluyor.');
+        await file.create();
+        return [];
+      }
       String contents = await file.readAsString();
       return jsonDecode(contents);
     } catch (e) {
+      print('Hata: $e');
       return [];
     }
   }
 
   static Future<File> writeBitkiTakip(List<dynamic> bitkiTakip) async {
     final file = await _localFile;
-    return file.writeAsString(jsonEncode(bitkiTakip));
+    try {
+      return file.writeAsString(jsonEncode(bitkiTakip));
+    } catch (e) {
+      print('Hata: $e');
+      rethrow;
+    }
   }
 
   static Future<void> addBitkiTakip(Map<String, dynamic> bitki) async {
-    List<dynamic> bitkiTakipList = await readBitkiTakip();
-    bitkiTakipList.add(bitki);
-    await writeBitkiTakip(bitkiTakipList);
+    try {
+      List<dynamic> bitkiTakipList = await readBitkiTakip();
+      bitkiTakipList.add(bitki);
+      await writeBitkiTakip(bitkiTakipList);
+      print('Bitki takip verisi başarıyla eklendi: $bitki');
+    } catch (e) {
+      print('Bitki takip verisi eklenirken bir hata oluştu: $e');
+    }
+  }
+  static Future<void> removeBitkiTakip(String adtakip, DateTime tarihtakip) async {
+    try {
+      List<dynamic> bitkiTakipList = await readBitkiTakip();
+      bitkiTakipList.removeWhere((bitki) =>
+          bitki['adtakip'] == adtakip && bitki['tarihtakip'] == tarihtakip.toIso8601String());
+      await writeBitkiTakip(bitkiTakipList);
+      print('Bitki takip verisi başarıyla silindi: $adtakip, $tarihtakip');
+    } catch (e) {
+      print('Bitki takip verisi silinirken bir hata oluştu: $e');
+    }
   }
 }

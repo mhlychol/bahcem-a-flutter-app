@@ -1,3 +1,4 @@
+import 'package:bahcem/components/resimdeneme_component.dart';
 import 'package:flutter/material.dart';
 import 'package:bahcem/components/aylikoneri.dart';
 import 'package:bahcem/components/uygmenu.dart';

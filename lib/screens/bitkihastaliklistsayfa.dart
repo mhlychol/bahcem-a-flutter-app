@@ -1,21 +1,23 @@
-import 'package:bahcem/models/sebzeler.dart';
-import 'package:flutter/material.dart';
-import 'package:bahcem/components/Sebzeliste.dart';
-import 'package:bahcem/services/sebzeservice.dart';
 import 'package:bahcem/components/bottomnavigationbar.dart';
 import 'package:bahcem/services/auth_service.dart';
 import 'package:bahcem/screens/uyganasayfa.dart';
+import 'package:flutter/material.dart';
 
-class SebzelistSayfa extends StatefulWidget {
-  const SebzelistSayfa({super.key});
+import 'package:bahcem/services/sebzeservice.dart';
+import 'package:bahcem/components/bitkihastalikliste.dart';
+import 'package:bahcem/models/bitkihastalik.dart';
+
+
+class HastaliklistSayfa extends StatefulWidget {
+  const HastaliklistSayfa({Key? key});
 
   @override
-  State<SebzelistSayfa> createState() => _SebzelistSayfaState();
+  State<HastaliklistSayfa> createState() => _HastaliklistSayfaState();
 }
 
-class _SebzelistSayfaState extends State<SebzelistSayfa> {
+class _HastaliklistSayfaState extends State<HastaliklistSayfa> {
   final TextEditingController _textController = TextEditingController();
-  List<Sebze> displayedSebzeler = [];
+  List<Hastalik> displayedHastaliklar = [];
   int _currentIndex = 0;
   void _onTabTapped(int index) {
     setState(() {
@@ -38,7 +40,7 @@ class _SebzelistSayfaState extends State<SebzelistSayfa> {
   @override
   void initState() {
     super.initState();
-    displayedSebzeler = JsonService.sebzeMenu;
+    displayedHastaliklar = JsonService.hastalikMenu;
   }
 
   @override
@@ -61,7 +63,7 @@ class _SebzelistSayfaState extends State<SebzelistSayfa> {
             ),
             const SizedBox(width: 8),
             const Text(
-              "Bahçem'in Sebzeleri",
+              "Bitki Hastalıkları",
               style: TextStyle(
                 color: Color.fromARGB(255, 255, 255, 255),
                 fontWeight: FontWeight.bold,
@@ -78,17 +80,18 @@ class _SebzelistSayfaState extends State<SebzelistSayfa> {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TextField(
+             child: TextField(
               controller: _textController,
               onChanged: (value) {
                 setState(() {
                   if (value.isEmpty) {
-                    displayedSebzeler = JsonService.sebzeMenu;
+                    displayedHastaliklar = JsonService.hastalikMenu;
                   } else {
                     String lowercaseValue = value.toLowerCase();
-                    displayedSebzeler = JsonService.sebzeMenu
-                        .where((sebze) =>
-                            sebze.ad.toLowerCase().contains(lowercaseValue))
+                    displayedHastaliklar = JsonService.hastalikMenu
+                        .where((hastalik) =>
+                            hastalik.hastalikadi.toLowerCase().contains(lowercaseValue) ||
+                            hastalik.hastalikbitkileri.any((bitki) => bitki.toLowerCase().contains(lowercaseValue)))
                         .toList();
                   }
                 });
@@ -128,9 +131,9 @@ class _SebzelistSayfaState extends State<SebzelistSayfa> {
           const SizedBox(height: 10),
           Expanded(
             child: ListView.builder(
-              itemCount: displayedSebzeler.length,
+              itemCount: displayedHastaliklar.length,
               itemBuilder: (context, index) {
-                return SebzeTile(sebze: displayedSebzeler[index]);
+                return Hastalikliste(hastalik: displayedHastaliklar[index]);
               },
             ),
           ),

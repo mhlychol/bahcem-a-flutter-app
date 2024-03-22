@@ -1,3 +1,4 @@
+import 'package:bahcem/screens/favoriler.dart';
 import 'package:flutter/material.dart';
 import 'package:bahcem/components/bottomnavigationbar.dart';
 import 'package:bahcem/services/auth_service.dart';
@@ -27,7 +28,11 @@ class _UygulamaAnasayfaState extends State<UygulamaAnasayfa> {
     if (index == 0) {
       // Handle "Anasayfa" tab
     } else if (index == 1) {
-      // Handle "Profil" tab
+ Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => BitkiTakipListesiPage()),
+    );
+    _currentIndex=0;
     } else if (index == 2) {
       AuthService().signOut(context);
     }

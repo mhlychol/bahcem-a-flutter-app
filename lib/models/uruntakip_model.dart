@@ -1,5 +1,7 @@
 class Sebzetakip {
   String adtakip;
+    String imagePathtakip;
+
   List<String> dikimAyitakip;
   String cimlenmeSuresitakip;
   String buyumeSuresitakip;
@@ -8,6 +10,8 @@ class Sebzetakip {
   DateTime tarihtakip;
 Sebzetakip({
   required this.adtakip,
+  required this.imagePathtakip,
+
   required this.dikimAyitakip,
   required this.cimlenmeSuresitakip,
   required this.buyumeSuresitakip,
@@ -20,6 +24,7 @@ Sebzetakip({
     return {
       'adtakip': adtakip,
       'dikimAyitakip': dikimAyitakip,
+      'imagePathtakip': imagePathtakip,
       'cimlenmeSuresitakip': cimlenmeSuresitakip,
       'buyumeSuresitakip': buyumeSuresitakip,
       'sulamaSikligitakip': sulamaSikligitakip,
@@ -31,6 +36,8 @@ Sebzetakip({
   factory Sebzetakip.fromJson(Map<String, dynamic> json) {
     return Sebzetakip(
       adtakip: json['adtakip'],
+      imagePathtakip: json['imagePathtakip'],
+
       dikimAyitakip: List<String>.from(json['dikimAyitakip']),
       cimlenmeSuresitakip: json['cimlenmeSuresitakip'],
       buyumeSuresitakip: json['buyumeSuresitakip'],

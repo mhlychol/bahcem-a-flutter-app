@@ -47,6 +47,7 @@ dependencies:
   weather: ^3.1.1
   geocoding: ^3.0.0
   http: ^1.2.0
+  firebase_storage: ^11.6.10
   #firebase_storage: ^11.5.6
   
 dev_dependencies:
@@ -69,6 +70,7 @@ flutter:
   assets:
     - assets/images/
     - assets/bahcemlogo.jpg
+    
   #  - assets/bitkiler.json
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

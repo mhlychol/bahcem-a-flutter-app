@@ -1,5 +1,8 @@
 import 'package:bahcem/components/havadurumu_component.dart';
+import 'package:bahcem/components/resimdeneme_component.dart';
 import 'package:bahcem/screens/giris.dart';
+import 'package:bahcem/services/firbasestorage_service.dart';
+import 'package:bahcem/services/image_service.dart';
 import 'package:bahcem/services/jsonfirebaseservice.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,11 +22,18 @@ void main() async {
   );
   initializeDateFormatting('Tr_TR', null).then((_) => const MyApp());
   setupLocator();
-
-  await JsonfirbaseService.getfirebazetojson();
+  
+  await FirebaseStorageService().downloadAndPrintJsonFiles();
+  await FirebaseStorageService().downloadImages();
+  //await JsonfirbaseService.getfirebazetojson();
   await JsonService.loadSebzeler();
+    await JsonService.loadZararlilar();
+    await JsonService.loadHastalik();
+
   //await JsonFirestoreService().addDataFromJson("assets/bitkiler.json");
- 
+  await LocalImageService.loadImages();
+
+
   runApp(const MyApp());
 }
 
@@ -33,11 +43,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-            locale: const Locale('tr', 'TR'), // Uygulama dilini Türkçe olarak ayarla
-
-      //home: SebzeListesiScreen(),
+    return  MaterialApp(
       home: GirisEkrani(),
+      //home: LocalImagesList (),
       //home: LocationServices(),
       //home:WeatherPage(),
       

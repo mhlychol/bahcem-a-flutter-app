@@ -1,4 +1,6 @@
 import 'dart:developer';
+import 'package:bahcem/services/image_service.dart';
+import 'package:bahcem/services/takiplistesi_service.dart';
 import 'package:intl/intl.dart';
 
 import 'package:bahcem/models/sebzeler.dart';
@@ -20,8 +22,11 @@ class Sebzedetaycomp extends StatelessWidget {
   );
 
   if (secilenTarih != null) {
+        DateTime tarihSadece = DateTime(secilenTarih.year, secilenTarih.month, secilenTarih.day);
+
     Sebzetakip sebzeTakip = Sebzetakip(
       adtakip: sebze.ad,
+      imagePathtakip: sebze.imagePath,
       dikimAyitakip: sebze.dikimAyi,
       cimlenmeSuresitakip: sebze.cimlenmeSuresi,
       buyumeSuresitakip: sebze.buyumeSuresi,
@@ -31,6 +36,8 @@ class Sebzedetaycomp extends StatelessWidget {
     );
     String formattedDate = DateFormat('dd.MM.yyyy').format(secilenTarih!);
 log(formattedDate);
+      await BitkiTakipService.addBitkiTakip(sebzeTakip.toJson());
+
     // Burada sebzeyi takip listesine ekleyebilirsiniz.
     // Örneğin:
     // takipListesi.add(sebzeTakip);
@@ -40,6 +47,8 @@ log(formattedDate);
 
   @override
   Widget build(BuildContext context) {
+              int? imageIndex = LocalImageService.getImageIndex('${sebze.imagePath}');
+
     return Container(
       margin: const EdgeInsets.all(8),
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
@@ -82,10 +91,19 @@ log(formattedDate);
                       BorderRadius.circular(10.0), // Adjust the value as needed
                   child: AspectRatio(
                     aspectRatio: 0.75,
-                    child: Image.asset(
-                      sebze.imagePath,
-                      fit: BoxFit.cover,
-                    ),
+                    child: imageIndex != null
+                ? Image.file(
+                    LocalImageService.imageFiles[imageIndex],
+                    
+                    height: 100,
+                    width: 100,
+                    fit: BoxFit.cover,
+                  )
+                 : Container(),
+                //     child: Image.asset(
+                //       sebze.imagePath,
+                //       fit: BoxFit.cover,
+                //     ),
                   ),
                 ),
               ),
