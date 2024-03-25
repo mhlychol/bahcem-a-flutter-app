@@ -1,6 +1,7 @@
 class Sebzetakip {
   String adtakip;
     String imagePathtakip;
+    String dikimTipi;
 
   List<String> dikimAyitakip;
   String cimlenmeSuresitakip;
@@ -11,6 +12,7 @@ class Sebzetakip {
 Sebzetakip({
   required this.adtakip,
   required this.imagePathtakip,
+  required this.dikimTipi,
 
   required this.dikimAyitakip,
   required this.cimlenmeSuresitakip,
@@ -24,6 +26,8 @@ Sebzetakip({
     return {
       'adtakip': adtakip,
       'dikimAyitakip': dikimAyitakip,
+            'dikimTipi': dikimTipi,
+
       'imagePathtakip': imagePathtakip,
       'cimlenmeSuresitakip': cimlenmeSuresitakip,
       'buyumeSuresitakip': buyumeSuresitakip,
@@ -37,7 +41,7 @@ Sebzetakip({
     return Sebzetakip(
       adtakip: json['adtakip'],
       imagePathtakip: json['imagePathtakip'],
-
+      dikimTipi: json['dikimTipi'],
       dikimAyitakip: List<String>.from(json['dikimAyitakip']),
       cimlenmeSuresitakip: json['cimlenmeSuresitakip'],
       buyumeSuresitakip: json['buyumeSuresitakip'],

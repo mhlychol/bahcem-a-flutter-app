@@ -1,4 +1,5 @@
 import 'package:bahcem/components/bottomnavigationbar.dart';
+import 'package:bahcem/screens/favorisayfa.dart';
 import 'package:bahcem/services/auth_service.dart';
 import 'package:bahcem/screens/uyganasayfa.dart';
 import 'package:flutter/material.dart';
@@ -31,8 +32,10 @@ class _HastaliklistSayfaState extends State<HastaliklistSayfa> {
         MaterialPageRoute(builder: (context) => UygulamaAnasayfa()),
       );
     } else if (index == 1) {
-      // Handle "Profil" tab
-    } else if (index == 2) {
+ Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => FavoriSayfa()),
+    );    } else if (index == 2) {
       AuthService().signOut(context);
     }
   }

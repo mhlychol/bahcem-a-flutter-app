@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:bahcem/models/Toprak.dart';
+import 'package:bahcem/models/uruntakip_model.dart';
 import 'package:bahcem/models/bitkihastalik.dart';
 import 'package:bahcem/models/sebzeler.dart';
 import 'package:bahcem/models/zararlilar.dart';
@@ -11,6 +11,7 @@ class JsonService {
   static final List<Sebze> _sebzeMenu = [];
   static final List<Zararli> _zararliMenu = [];
 static final List<Hastalik> _hastalikMenu = [];
+
 
   static List<Sebze> get sebzeMenu => _sebzeMenu;
   static List<Zararli> get zararliMenu => _zararliMenu;

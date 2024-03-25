@@ -1,4 +1,4 @@
-import 'package:bahcem/screens/favoriler.dart';
+import 'package:bahcem/screens/favorisayfa.dart';
 import 'package:flutter/material.dart';
 import 'package:bahcem/components/bottomnavigationbar.dart';
 import 'package:bahcem/services/auth_service.dart';
@@ -30,7 +30,7 @@ class _UygulamaAnasayfaState extends State<UygulamaAnasayfa> {
     } else if (index == 1) {
  Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => BitkiTakipListesiPage()),
+      MaterialPageRoute(builder: (context) => FavoriSayfa()),
     );
     _currentIndex=0;
     } else if (index == 2) {

@@ -1,4 +1,5 @@
 import 'package:bahcem/models/sebzeler.dart';
+import 'package:bahcem/screens/favorisayfa.dart';
 import 'package:flutter/material.dart';
 import 'package:bahcem/components/Sebzeliste.dart';
 import 'package:bahcem/services/sebzeservice.dart';
@@ -29,7 +30,10 @@ class _SebzelistSayfaState extends State<SebzelistSayfa> {
         MaterialPageRoute(builder: (context) => UygulamaAnasayfa()),
       );
     } else if (index == 1) {
-      // Handle "Profil" tab
+       Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => FavoriSayfa()),
+    );
     } else if (index == 2) {
       AuthService().signOut(context);
     }

@@ -1,5 +1,5 @@
 import 'package:bahcem/screens/bitkihastaliklistsayfa.dart';
-import 'package:bahcem/screens/zararlilistsayfadart';
+import 'package:bahcem/screens/zararlilistsayfa.dart';
 import 'package:flutter/material.dart';
 import 'package:bahcem/screens/sebzelistsayfa.dart';
 
@@ -15,65 +15,91 @@ class UygMenu extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SebzelistSayfa()),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
+          Container(
+            margin: EdgeInsets.all(8),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SebzelistSayfa()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
+                ),
+                padding: EdgeInsets.all(25),
+                elevation: 5,
               ),
-              padding: EdgeInsets.all(25),
+              child: const Text(
+                'Sebzeler',
+                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)), // Buton metninin rengi
+              ),
             ),
-            child: const Text('Sebzeler'),
           ),
-          SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ZararlilistSayfa()),
-              );            },
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
+          Container(
+            margin: EdgeInsets.all(8),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ZararlilistSayfa()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
+                ),
+                padding: EdgeInsets.all(25),
+                elevation: 5,
               ),
-              padding: EdgeInsets.all(25),
+              child: const Text(
+                'Bahçe Zararlıları',
+                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)), // Buton metninin rengi
+              ),
             ),
-            child: const Text('Bahçe Zararlıları'),
           ),
-          SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
- Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const HastaliklistSayfa()),
-              );            },
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
+          Container(
+            margin: EdgeInsets.all(8),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HastaliklistSayfa()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
+                ),
+                padding: EdgeInsets.all(25),
+                elevation: 5,
               ),
-              padding: EdgeInsets.all(25),
-            ),
-            child: const Text('Bitki Hastalıkları'),
-          ),
-          SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-              // Butona tıklama işlemi burada yapabilirsiniz.
-            },
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
+              child: const Text(
+                'Bitki Hastalıkları',
+                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)), // Buton metninin rengi
               ),
-              padding: EdgeInsets.all(25),
             ),
-            child: const Text('Kış Bahçesi'),
           ),
-          SizedBox(height: 10),
+          Container(
+            margin: EdgeInsets.all(8),
+            child: ElevatedButton(
+              onPressed: () {
+                // Butona tıklama işlemi burada yapabilirsiniz.
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                padding: EdgeInsets.all(25),
+                elevation: 5,
+              ),
+              child: const Text(
+                'Kış Bahçesi',
+                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)), // Buton metninin rengi
+              ),
+            ),
+          ),
         ],
       ),
     );

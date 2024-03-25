@@ -11,38 +11,69 @@ class Sebzedetaycomp extends StatelessWidget {
   final Sebze sebze;
   const Sebzedetaycomp({super.key, required this.sebze});
 
-  void takipbuton(BuildContext context) async {
-  DateTime? secilenTarih = await showDatePicker(
-    context: context,
-    initialDate: DateTime.now(),
-    firstDate: DateTime(DateTime.now().month - 6),
-    lastDate: DateTime.now(),
-    //locale: const Locale('tr', 'TR'), // Türkçe dil ayarı
-    
-  );
+  Future<void> takipbuton(BuildContext context) async {
+    String? secilendikimTipi;
+    DateTime? secilenTarih;
 
-  if (secilenTarih != null) {
-        DateTime tarihSadece = DateTime(secilenTarih.year, secilenTarih.month, secilenTarih.day);
-
-    Sebzetakip sebzeTakip = Sebzetakip(
-      adtakip: sebze.ad,
-      imagePathtakip: sebze.imagePath,
-      dikimAyitakip: sebze.dikimAyi,
-      cimlenmeSuresitakip: sebze.cimlenmeSuresi,
-      buyumeSuresitakip: sebze.buyumeSuresi,
-      sulamaSikligitakip: sebze.sulamaSikligi,
-      mevsimtakip: sebze.mevsim,
-      tarihtakip: secilenTarih,
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Seçenekler'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: Text('Tohum'),
+                onTap: () {
+                  secilendikimTipi = 'Tohum';
+                  Navigator.of(context).pop();
+                },
+              ),
+              ListTile(
+                title: Text('Fidan'),
+                onTap: () {
+                  secilendikimTipi = 'Fidan';
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
-    String formattedDate = DateFormat('dd.MM.yyyy').format(secilenTarih!);
-log(formattedDate);
-      await BitkiTakipService.addBitkiTakip(sebzeTakip.toJson());
 
-    // Burada sebzeyi takip listesine ekleyebilirsiniz.
-    // Örneğin:
-    // takipListesi.add(sebzeTakip);
+    if (secilendikimTipi != null) {
+      secilenTarih = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(DateTime.now().month - 6),
+        lastDate: DateTime.now(),
+      );
+    }
+
+    if (secilenTarih != null) {
+      DateTime tarihSadece =
+          DateTime(secilenTarih.year, secilenTarih.month, secilenTarih.day);
+
+      Sebzetakip sebzeTakip = Sebzetakip(
+        adtakip: sebze.ad,
+        imagePathtakip: sebze.imagePath,
+        dikimAyitakip: sebze.dikimAyi,
+        cimlenmeSuresitakip: sebze.cimlenmeSuresi,
+        buyumeSuresitakip: sebze.buyumeSuresi,
+        sulamaSikligitakip: sebze.sulamaSikligi,
+        mevsimtakip: sebze.mevsim,
+        tarihtakip: tarihSadece,
+        dikimTipi: secilendikimTipi!,
+      );
+
+      String formattedDate = DateFormat('dd.MM.yyyy').format(secilenTarih!);
+      log(formattedDate);
+
+      await BitkiTakipService.addBitkiTakip(sebzeTakip);
+    }
   }
-}
 
 
   @override

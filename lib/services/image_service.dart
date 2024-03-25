@@ -37,11 +37,11 @@ class LocalImageService {
   static int? getImageIndex(String imageName) {
     int? imageIndex;
     for (int i = 0; i < _imageFiles.length; i++) {
-      log('Image name: ${_imageFiles[i].path.split('/').last}, Sebze image path: $imageName');
+    //  log('Image name: ${_imageFiles[i].path.split('/').last}, Sebze image path: $imageName');
 
       if (_imageFiles[i].path.split('/').last == imageName) {
         imageIndex = i;
-        log('imageIndex $imageIndex');
+      //  log('imageIndex $imageIndex');
         break;
       }
     }
